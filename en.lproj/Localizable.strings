@@ -1,0 +1,13 @@
+/* 
+  Localizable.strings
+  openWeather
+
+  Created by Nguyen Loc on 3/3/22.
+  
+*/
+
+"date_label" = "Date: %@";
+"avg_temp_label" = "Average Temperature: %@";
+"pressure_label" = "Pressure: %@";
+"humidity_label" = "Humidity: %@";
+"description_label" = "Description: %@";

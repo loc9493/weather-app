@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="qqw-kn-Mp6">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19519"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Weather Forecast-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="openWeather" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="dMz-F0-YPw">
+                                <rect key="frame" x="0.0" y="88" width="414" height="51"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </searchBar>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="qiH-1R-kLn">
+                                <rect key="frame" x="0.0" y="139" width="414" height="723"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            </tableView>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="Rl9-yD-rUv">
+                                <rect key="frame" x="188.5" y="456.5" width="37" height="37"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="color" name="AccentColor"/>
+                            </activityIndicatorView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="qiH-1R-kLn" secondAttribute="trailing" id="5GW-BT-hlQ"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="qiH-1R-kLn" secondAttribute="bottom" id="5gS-Yt-JZ0"/>
+                            <constraint firstItem="qiH-1R-kLn" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="EWa-Ha-58h"/>
+                            <constraint firstItem="qiH-1R-kLn" firstAttribute="top" secondItem="dMz-F0-YPw" secondAttribute="bottom" id="G1I-Dw-ssn"/>
+                            <constraint firstItem="Rl9-yD-rUv" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="Iay-O1-7I0"/>
+                            <constraint firstItem="dMz-F0-YPw" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="YMU-2c-TTE"/>
+                            <constraint firstItem="dMz-F0-YPw" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="oOU-RT-yLs"/>
+                            <constraint firstItem="Rl9-yD-rUv" firstAttribute="centerY" secondItem="6Tk-OE-BBY" secondAttribute="centerY" id="rv7-S0-HAR"/>
+                            <constraint firstItem="dMz-F0-YPw" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="y0f-6s-WZ3"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="Weather Forecast" id="1Xt-jc-Nyw"/>
+                    <connections>
+                        <outlet property="loadingIndicator" destination="Rl9-yD-rUv" id="rEH-qw-YkK"/>
+                        <outlet property="searchBar" destination="dMz-F0-YPw" id="mR4-0o-GlN"/>
+                        <outlet property="tblView" destination="qiH-1R-kLn" id="qzO-MS-eZl"/>
+                    </connections>
+                </viewController>
+            </objects>
+            <point key="canvasLocation" x="433" y="148"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="eAe-MR-qWx">
+            <objects>
+                <navigationController id="qqw-kn-Mp6" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="Bjl-tJ-01U">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="yuZ-lw-WEq"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="L6r-dH-Fgk" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-558" y="148"/>
+        </scene>
+    </scenes>
+    <resources>
+        <namedColor name="AccentColor">
+            <color red="0.0" green="0.46000000000000002" blue="0.89000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>
