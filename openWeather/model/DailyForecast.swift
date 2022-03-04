@@ -28,10 +28,21 @@ struct Forecast: Codable {
     let pop: Double
     let rain: Double?
     
-    func forecastDescription() -> String? {
-        return weather.first?.weatherDescription
+    func forecastDescription() -> String {
+        return weather.first?.weatherDescription ?? ""
     }
     
+    func getAvgTemp() -> String {
+        return String(temp.day)
+    }
+    
+    func getHumidity() -> String {
+        return String(humidity)
+    }
+    
+    func getPressure() -> String {
+        return String(pressure)
+    }
     func getDateString() -> String {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = Constant.dateFormat

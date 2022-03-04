@@ -13,3 +13,10 @@
 "description_label" = "Description: %@";
 "invalid_input" = "Please input at least 3 characters";
 "error" = "Error";
+"search-bar" = "Search bar";
+"search-field" = "City search field";
+"date-label" = "Weather forecast for date %@";
+"avg-temp"= "Average Temperature is %@";
+"pressure"= "Pressure is %@";
+"description"= "Weather description is %2";
+"cell_accessbility" = "Weather forecast for date %@, average temperature is %@, pressure is %@, hudmidity is %@, in overall %@";

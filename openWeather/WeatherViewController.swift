@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  WeatherViewController.swift
 //  openWeather
 //
 //  Created by Nguyen Loc on 3/3/22.
@@ -7,7 +7,7 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class WeatherViewController: UIViewController {
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var tblView: UITableView!
     private var viewModel = WeatherViewModel()
@@ -17,8 +17,15 @@ class ViewController: UIViewController {
     private var errorObserver: NSKeyValueObservation?
     override func viewDidLoad() {
         super.viewDidLoad()
+        setupAccessbility()
         setupView()
         setupBinding()
+    }
+    
+    private func setupAccessbility() {
+        searchBar.accessibilityLabel = "search-bar".localized()
+        searchBar.accessibilityIdentifier = AccessibilityIdentifier.searchBar
+        searchBar.searchTextField.accessibilityLabel = "search-field".localized()
     }
     
     private func setupView() {
@@ -64,7 +71,7 @@ class ViewController: UIViewController {
     }
 }
 
-extension ViewController: UITableViewDataSource {
+extension WeatherViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if let cell = tableView.dequeueReusableCell(withIdentifier: ForecastTableViewCell.identifier, for: indexPath) as? ForecastTableViewCell, let item = viewModel.forecastAtIndex(index: indexPath.row) {
             cell.configure(item: item)
@@ -81,7 +88,7 @@ extension ViewController: UITableViewDataSource {
     }
 }
 
-extension ViewController: UISearchBarDelegate {
+extension WeatherViewController: UISearchBarDelegate {
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         if let term = searchBar.text, viewModel.isValidTerm(term: term) {
             viewModel.getCityForecast(term: term)
