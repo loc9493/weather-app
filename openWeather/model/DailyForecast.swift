@@ -10,7 +10,7 @@ import Foundation
 // MARK: - DailyForecast
 @objc class ForecastResponse: NSObject, Codable {
     let cod: String
-    let message: Double
+    let message: String
     let cnt: Int
     let list: [Forecast]
 }

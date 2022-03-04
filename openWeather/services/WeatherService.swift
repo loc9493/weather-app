@@ -20,7 +20,7 @@ class WeatherService {
         request.httpMethod = "GET"
         
         let decoder = JSONDecoder()
-        let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
+        let task = urlSession.dataTask(with: request) { (data, response, error) in
             if let response = response as? HTTPURLResponse, !(200..<300).contains(response.statusCode), let data = data {
                 do {
                     let errorResponse = try decoder.decode(ErrorResponse.self, from: data)
@@ -28,15 +28,19 @@ class WeatherService {
                 } catch _ {
                     completion(.failure(ErrorResponse(error: .ParseError)))
                 }
+                return
+            }
+            
+            if let error = error, data == nil, response == nil {
+                completion(.failure(ErrorResponse(error: error as NSError)))
+                return
             }
             do {
                 let response = try decoder.decode(ForecastResponse.self, from: data ?? Data())
-                print(response)
                 completion(.success(response))
-            } catch _ {
+            } catch let parseError {
                 completion(.failure(ErrorResponse(error: .ParseError)))
             }
-            
         }
         task.resume()
     }
@@ -63,7 +67,6 @@ class RequestProvider {
         }
         urlQuery.append(URLQueryItem(name: "appid", value: apiKey))
         urlComponent?.queryItems = urlQuery
-        print(urlComponent?.url)
         
         if let url = urlComponent?.url(relativeTo: baseURL) {
             print(url)

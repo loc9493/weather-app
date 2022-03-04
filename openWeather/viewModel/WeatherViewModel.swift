@@ -9,7 +9,7 @@ import Foundation
 
 @objc class WeatherViewModel: NSObject {
     private let weatherService = WeatherService()
-    
+    private let reqProvider = RequestProvider(baseUrl: Constant.baseUrl, apiKey: Constant.apiKey() ?? "")
     @objc dynamic var isLoading = false
     @objc dynamic var forecastDay: ForecastResponse?
     @objc dynamic var errorMessage: String?
@@ -30,6 +30,12 @@ import Foundation
     }
     
     func isValidTerm(term: String) -> Bool {
+//    params: ["q": term, "cnt": "7", "unit":"metric"]
+        if let request = reqProvider?.createRequest(endPoint: .dailyForecast, params: ["q": term, "cnt": "7", "unit":"metric"]) {
+            let response = URLSession.shared.configuration.urlCache?.cachedResponse(for: request)
+            print(response)
+            
+        }
         return term.count >= 3
     }
     
