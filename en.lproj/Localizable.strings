@@ -11,3 +11,5 @@
 "pressure_label" = "Pressure: %@";
 "humidity_label" = "Humidity: %@";
 "description_label" = "Description: %@";
+"invalid_input" = "Please input at least 3 characters";
+"error" = "Error";

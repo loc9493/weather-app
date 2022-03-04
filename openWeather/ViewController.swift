@@ -14,6 +14,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var loadingIndicator: UIActivityIndicatorView!
     private var observer: NSKeyValueObservation?
     private var forecastObserver: NSKeyValueObservation?
+    private var errorObserver: NSKeyValueObservation?
     override func viewDidLoad() {
         super.viewDidLoad()
         setupView()
@@ -40,6 +41,23 @@ class ViewController: UIViewController {
                 self?.tblView.reloadData()
             }
         })
+        
+        errorObserver = viewModel.observe(\WeatherViewModel.errorMessage,options: .new, changeHandler: { [weak self] model, info in
+
+            DispatchQueue.main.async {
+                if let message = model.errorMessage {
+                    self?.displayWarning(message: message)
+                }
+            }
+        })
+    }
+    
+    private func displayWarning(message: String) {
+        let vc = UIAlertController(title: "error".localized(), message: message, preferredStyle: .alert)
+        let action = UIAlertAction(title: "OK", style: .default, handler: nil)
+        vc.addAction(action)
+        present(vc, animated: true)
+        
     }
     deinit {
         observer = nil
@@ -67,6 +85,8 @@ extension ViewController: UISearchBarDelegate {
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         if let term = searchBar.text, viewModel.isValidTerm(term: term) {
             viewModel.getCityForecast(term: term)
+        } else {
+            displayWarning(message: "invalid_input".localized())
         }
     }
     

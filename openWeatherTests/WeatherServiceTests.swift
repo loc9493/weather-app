@@ -6,14 +6,13 @@
 //
 
 import XCTest
-import RxSwift
 @testable import openWeather
 
-class openWeatherTests: XCTestCase {
+class WeatherServiceTests: XCTestCase {
     let apiService = WeatherService()
-    let disposeBag = DisposeBag()
+
     override func setUpWithError() throws {
-        print("Run teeee")
+        
     }
 
     override func tearDownWithError() throws {
@@ -22,15 +21,12 @@ class openWeatherTests: XCTestCase {
 
     func testCityNotFound() throws {
         let expectation = XCTestExpectation(description: "Waiting for api request")
-
         apiService.getDailyForecast(term: "abc") { result in
             switch result {
             case .success(let response):
-                print("HEeee")
                 expectation.fulfill()
                 break
             case .failure(let error):
-                print(error)
                 XCTAssertEqual(error.cod, "404")
                 expectation.fulfill()
                 break
@@ -41,7 +37,6 @@ class openWeatherTests: XCTestCase {
     
     func testCityFound() throws {
         let expectation = XCTestExpectation(description: "Waiting for api request")
-
         apiService.getDailyForecast(term: "saigon") { result in
             switch result {
             case .success(let response):

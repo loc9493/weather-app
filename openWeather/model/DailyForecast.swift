@@ -15,20 +15,6 @@ import Foundation
     let list: [Forecast]
 }
 
-// MARK: - City
-struct City: Codable {
-    let id: Int
-    let name: String
-    let coord: Coord
-    let country: String
-    let population, timezone: Int
-}
-
-// MARK: - Coord
-struct Coord: Codable {
-    let lon, lat: Double
-}
-
 // MARK: - List
 struct Forecast: Codable {
     let temp: Temp

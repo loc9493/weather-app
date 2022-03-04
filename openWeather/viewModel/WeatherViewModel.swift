@@ -16,16 +16,16 @@ import Foundation
     func getCityForecast(term: String) {
         isLoading = true
         weatherService.getDailyForecast(term: term, completion: {[weak self] result in
+            self?.isLoading = false
             switch result {
             case .failure(let error):
                 self?.errorMessage = error.message
                 break
             case .success(let response):
                 self?.forecastDay = response
-                
                 break
             }
-            self?.isLoading = false
+            
         })
     }
     
