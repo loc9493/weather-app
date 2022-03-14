@@ -39,6 +39,7 @@ class WeatherService {
                 let response = try decoder.decode(ForecastResponse.self, from: data ?? Data())
                 completion(.success(response))
             } catch let parseError {
+                print(parseError)
                 completion(.failure(ErrorResponse(error: .ParseError)))
             }
         }
